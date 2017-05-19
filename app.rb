@@ -6,26 +6,16 @@ Dir[File.dirname(__FILE__) + '/lib/*.rb'].each { |file| require file }
 
 
 get("/") do
-  # when page first loads, return an empty city to plot on the map
-  # tmp_city = City.new()
-  # tmp_city.save_lat(0)
-  # tmp_city.save_lng(0)
-  # tmp_city.save_name("")
-  # tmp_city.save_total(0)
-  # tmp_city.save_rep([])
-
-  # City.save_current_city(nil)
   @selected_city = nil
-
   erb(:index)
 end
 
-
-get('/ruby_data') do
-
-  # data to be passed to javascript
-  if (City.get_current_city.get_lat != 0)
-      [{
+# data to be passed to javascript
+# this AJAX request happens EVERY TIME a page is loaded (see jQuery script)
+post('/ruby_data') do
+  # when a single city is entered into the input field, pass just the info for that city
+  if ((City.get_current_city != nil) && (City.get_current_city != "many"))
+      test = [{
         nam: City.get_current_city.get_name,
         lat: City.get_current_city.get_lat,
         lng: City.get_current_city.get_lng,
@@ -33,6 +23,7 @@ get('/ruby_data') do
         tot: City.get_current_city.get_total
       }].to_json
   elsif (City.get_current_city == "many")
+      # when all_cities butten pressed (or other muliples) store all results in an array to be passed
       cities_arr = []
       City.get_all.each do |city_obj|
           city_data_hash = {
@@ -46,12 +37,13 @@ get('/ruby_data') do
       end
       cities_arr.to_json
   else
-      [{
-        nam: City.get_current_city.get_name,
-        lat: City.get_current_city.get_lat,
-        lng: City.get_current_city.get_lng,
-        rep: City.get_current_city.get_rep,
-        tot: City.get_current_city.get_total
+      # when map first shows, center on Oregon
+      test = [{
+        nam: "Oregon",
+        lat: 43.8041,
+        lng: -120.5542,
+        rep: "",
+        tot: 0
       }].to_json
   end
 end

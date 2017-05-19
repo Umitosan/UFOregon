@@ -13,7 +13,6 @@ class City
   @@all = []
   @@current_city = nil
 
-
   def initialize()
     @name = ""
     @lat = 0

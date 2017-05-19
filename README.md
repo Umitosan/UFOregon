@@ -1,7 +1,6 @@
 # UFOregon
 ![](https://media.giphy.com/media/VbmYpyiGXt2AU/giphy.gif)
 
-
 This application uses data from the National UFO Reporting Center (NUFORC) database @ http://www.nuforc.org to show on a Google Map all of the locations where a UFO sighting has been reported in the state of Oregon. Upon clicking the marker information about the different sightings will be available.
 
 ## Screenshot
@@ -30,7 +29,6 @@ As a user, I want to search for a city in Oregon to see its reported UFO sightin
 As a user, I want to see more information about the sightings that have been reported there.
 As a user, I want to see an indicator that shows which city's sighting information I am currently viewing with a marker on the map.
 
-
 ## Specifications
 
 | Behavior | Input | Output |
@@ -38,7 +36,6 @@ As a user, I want to see an indicator that shows which city's sighting informati
 | view map of Oregon  | user navigates to home page | map of Oregon loads with a marker indicating the center of the map |
 | enter a city name to see a marker for that city | "Portland" | marker drops on Portland |
 | click UFO marker for a city to see more details | click UFO on Portland | A list of all of the descriptions of each unique sighting in that city shows below the map, and a display window on the marker shoes the city name, coordinates, and number of sightings |
-
 
 ## Setup/Installation Requirements
 1. ⌘Command T to open a new tab in the terminal and start postgres (leave it running in the background)
@@ -76,8 +73,14 @@ $ rake db:test:prepare
 $ psql
 
 \c oregon_sightings_development
-
-COPY ufos(sight_date, city, state, shape, duration, summary, latitude, longitude) FROM '/Users/Guest/desktop/UFOregon/raw_data/oregon_sightings_latlong.csv' DELIMITER ',' CSV;
+```
+OSX import path example (replace USERNAME with your local user):
+```
+COPY ufos(sight_date, city, state, shape, duration, summary, latitude, longitude) FROM '/Users/USERNAME/desktop/UFOregon/raw_data/oregon_sightings_latlong.csv' DELIMITER ',' CSV;
+```
+Windows import path:
+```
+COPY ufos(sight_date, city, state, shape, duration, summary, latitude, longitude) FROM 'C:\Users\USERNAME\Desktop\UFOregon\raw_data\oregon_sightings_latlong.csv' DELIMITER ',' CSV;
 ```
 9. ⌘Command T to open another new tab in the terminal and start sinatra (leave it running in background)
 ```

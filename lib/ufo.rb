@@ -13,7 +13,6 @@ class City
   @@all = []
   @@current_city = nil
 
-
   def initialize()
     @name = ""
     @lat = 0
@@ -70,6 +69,11 @@ class City
     @total
   end
 
+  def City.caseIt(name)
+    name = name.downcase.capitalize
+    name
+  end
+
   def City.validate_name?(name)
     valid = nil
     if (name !~ /[^a-zA-Z]/i)
@@ -79,6 +83,5 @@ class City
     end
     valid
   end
-
 
 end

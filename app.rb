@@ -6,31 +6,18 @@ Dir[File.dirname(__FILE__) + '/lib/*.rb'].each { |file| require file }
 
 
 get("/") do
-  # when page first loads, return an empty city to plot on the map
-  # tmp_city = City.new()
-  # tmp_city.save_lat(0)
-  # tmp_city.save_lng(0)
-  # tmp_city.save_name("")
-  # tmp_city.save_total(0)
-  # tmp_city.save_rep([])
-
-  # City.save_current_city(nil)
-  @selected_city = nil
-
   erb(:index)
 end
 
-
 get('/ruby_data') do
-
   # data to be passed to javascript
-  if (City.get_current_city.get_lat != 0)
+  if (City.get_current_city == nil)
       [{
-        nam: City.get_current_city.get_name,
-        lat: City.get_current_city.get_lat,
-        lng: City.get_current_city.get_lng,
-        rep: City.get_current_city.get_rep,
-        tot: City.get_current_city.get_total
+        nam: "Bend",
+        lat: 44.06,
+        lng: -121.32,
+        rep: "no reports",
+        tot: 0
       }].to_json
   elsif (City.get_current_city == "many")
       cities_arr = []
@@ -59,10 +46,9 @@ end
 
 post('/get_city_name') do
   city_name = params.fetch('city_name')
-# binding.pry
-  if City.validate_name?(city_name)
+  if City.validate_name?(City.caseIt(city_name))
     new_city = City.new()
-    new_city.save_name(city_name)
+    new_city.save_name(City.caseIt(city_name))
     found_rows_arr = Ufo.find_by_sql("SELECT * FROM ufos WHERE city = '#{new_city.get_name}';")
     new_city.save_total(found_rows_arr.count)
     # returns a single record for city to display correct map marker
@@ -77,10 +63,9 @@ post('/get_city_name') do
     end
     new_city.save_rep(summaries)
     City.save_current_city(new_city)
-    @selected_city = City.get_current_city
     erb(:index)
   else
-    @selected_city = nil
+    City.get_current_city = nil
     erb(:errors)
   end
 end
@@ -118,8 +103,6 @@ post('/get_all_cities') do
     cities_arr.push(new_city)
   end
   City.save_to_all(cities_arr)
-  # since we want all cities on the map, there is no "selected_city"
-  @selected_city = nil
   erb(:index)
 end
 
@@ -145,9 +128,6 @@ end
 #   file.write(coords)
 # end
 
-# var javascript_side_json = <%= @rails_side_json.html_safe %>;
-# or
-# var javascript_side_json = <%=raw @rails_side_json %>;
 #
 # JSON.generate({:this => "is cool"})
 

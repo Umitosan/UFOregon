@@ -6,20 +6,22 @@
     <button id="toggle_map" class="btn btn-City" name="toggle_map">Toggle map</button>
     <br>
     <br>
-    <button id="first_ten" class="btn" name="first_ten">gimme 10!</button>
+    <form action="/get_all_cities" method="post">
+      <button class="btn" type="submit">gimme many!</button>
+    </form>
     <br>
   </div>
   <div class="col-xs-4">
     <form action="/get_city_name" method="post">
-        <input class="blk_text" type="text" name="city_name" placeholder="search by city" required></input>
-        <button class="btn btn-City btn-sm" type="submit">Search!</button>
-        <% if (City.get_current_city != nil) %>
-          <h4 id="instructions">Click UFO for sighting reports</h4>
-        <% end %>
+      <input class="blk_text" type="text" name="city_name" placeholder="search by city" required></input>
+      <button class="btn btn-City btn-sm" type="submit">Search!</button>
+      <% if (City.get_current_city != nil) %>
+        <h4 id="instructions">Click UFO for sighting reports</h4>
+      <% end %>
     </form>
   </div>
   <div class="col-xs-4 query">
-    <% if (City.get_current_city != nil) %>
+    <% if ((City.get_current_city != nil) && (City.get_current_city != "many"))%>
         <h3>Your Query results:</h3>
         <p>Sightings found: <%= City.get_current_city.get_total %></p>
         <p>City latitude: <%= City.get_current_city.get_lat %></p>
@@ -36,7 +38,7 @@
 </div>
 
 <div id="map_script"></div>
-<% if (City.get_current_city != nil) %>
+<% if ((City.get_current_city != nil) && (City.get_current_city != "many")) %>
   <div id="dialog-window">
     <div id="scrollable-content">
       <h1><span><%=City.get_current_city.get_total%></span> Sightings found for <span><%=City.get_current_city.get_name%>:</span></h1>

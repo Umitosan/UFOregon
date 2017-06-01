@@ -1,6 +1,3 @@
-/////////////////
-// BACK END
-////////////////
 
 var google_styles = [
   {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
@@ -88,9 +85,10 @@ var google_styles = [
   }
 ];
 
-///////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
 //// initMap = master google maps API output
 //////////////////////////////////////////////////////
+
 
 function initMapMain() {
   // create main map
@@ -101,26 +99,41 @@ function initMapMain() {
   });
 }; // END initFirstMap function
 
-// REF: https://developers.google.com/maps/documentation/javascript/examples/marker-remove
-var allMarkers = [];
 
 function addMarkers(queryData) {
   // places each marker for the city
-  queryData.forEach(function(hash_obj) {
-    var coord = new google.maps.LatLng(hash_obj['lat'],hash_obj['lng']);
+  queryData.forEach(function(city_hash) {
+    var coord = new google.maps.LatLng(city_hash['lat'],city_hash['lng']);
     testMarker = new google.maps.Marker({
       position: coord,
       animation: google.maps.Animation.DROP,
       icon: './img/ufo_marker_eerie.png',
       map: mapMain
     });
+    // sightings reports
+    testMarker.addListener('click', showReport);
+    // info window
+    testMarker.addListener('click', function() {
+      infowindow.open(mapMain, this);
+    });
+    var infowindow = new google.maps.InfoWindow({
+      content: "<h3 class='blk_text'>" + city_hash['nam'] + '</h3><br>' +
+                "<p class='blk_text'>Found: " + city_hash['tot'] + ' UFOs <br>' +
+                "<p class='blk_text'>Lat= " + city_hash['lat'] + "<br>" + " Long= " +
+                city_hash['lng'] + "<p>"
+    });
   });
   // refocus on center of Oregon
-  var oregon = new google.maps.LatLng(43.8041, -120.5542);
-  mapMain.panTo(oregon);
-  // add this marker to the array of all markers
-  allMarkers.push(testMarker);
+  // var oregon = new google.maps.LatLng(43.8041, -120.5542);
+  // mapMain.panTo(oregon);
+  // REF: https://developers.google.com/maps/documentation/javascript/examples/marker-remove
 }; // end addMarkers function
+
+//Function to display UFO reports upon icon click
+function showReport() {
+  $('#scrollable-content').show();
+}
+
 
 
 
@@ -182,22 +195,14 @@ function addMarkers(queryData) {
 ///////////////////
 // FRONT END
 ///////////////////
-
-test = false;
-
 $(document).ready(function() {
-
-  console.log("test=",test);
 
   // AJAX get request - to refresh the map
   $.get("/ruby_data", function(ruby_data) {
-    console.log("AJAX $.get happened");
     initMapMain();
+    console.log("initMapMain()");
     parsed_data = JSON.parse(ruby_data);
     addMarkers(parsed_data);
-    console.log("parsed_data= " , parsed_data);
-    console.log("add markers happened");
-    test = true;
   });
 
   // old request for old initMap
@@ -213,28 +218,4 @@ $(document).ready(function() {
     console.log("toggle_map clicked");
   });
 
-  $("#all_cities").click(function() {
-    console.log("all_cities clicked");
-  });
-
-  $('#first_ten').click(function() {
-    console.log("first_ten clicked");
-  });
-
 });
-
-// TEST
-// $("button").click(function(){
-//   $("#div1").load("/play",function(responseTxt,statusTxt,xhr){
-//     // if(statusTxt=="success") alert("External content loaded successfully!");
-//     if(statusTxt=="error")
-//       alert("Error: "+xhr.status+": "+xhr.statusText);
-//   });
-// });
-
-// AJAX request example
-// $("button").click(function(){
-//     $.ajax({url: "demo_test.txt", success: function(result){
-//         $("#div1").html(result);
-//     }});
-// });

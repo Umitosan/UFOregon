@@ -8,20 +8,17 @@ This application uses data from the National UFO Reporting Center (NUFORC) datab
 
 ![screenshot](public/img/screen_shot.png)
 
-## Built With
+## Primary technologies used
 
-* ActiveRecord
-* Bootstrap
-* CSS
-* HTML
-* Postgres
-* Rake
 * Ruby
 * Sinatra
-* Javascript
-* JSON
+* ActiveRecord
+* Postgres
 * Google Maps API
-* Heroku
+* Javascript
+* HTML
+* CSS
+* Bootstrap
 
 ### User Stories
 
@@ -29,7 +26,6 @@ As a user, I want to see a map of Oregon.
 As a user, I want to search for a city in Oregon to see its reported UFO sightings.
 As a user, I want to see more information about the sightings that have been reported there.
 As a user, I want to see an indicator that shows which city's sighting information I am currently viewing with a marker on the map.
-
 
 ## Specifications
 
@@ -39,39 +35,40 @@ As a user, I want to see an indicator that shows which city's sighting informati
 | enter a city name to see a marker for that city | "Portland" | marker drops on Portland |
 | click UFO marker for a city to see more details | click UFO on Portland | A list of all of the descriptions of each unique sighting in that city shows below the map, and a display window on the marker shoes the city name, coordinates, and number of sightings |
 
+## pre-required
 
-## Setup/Installation Requirements
-1. ⌘Command T to open a new tab in the terminal and start postgres (leave it running in the background)
+* Ruby
+* Rails
+* Google maps for Javascript Api key
+
+## Setup/Installation
+
+* ⌘Command T to open a new tab in the terminal and start postgres (leave it running in the background)
 ```
 $ postgres
 ```
-2. Clone this repository in the terminal
+* Clone this repository in the terminal
 ```
 $ git clone https://github.com/saschultz/UFOregon.git
 ```
-3. Make sure you have rake installed
+* Make sure you have rake installed
 ```
 $ gem install rake
 ```
-4. Navigate to the project directory
+* Navigate to the project directory
 ```
 $ cd Desktop/UFOregon
 ```
-5. In the terminal
-```
-$ rake db:schema:load
-```
-6. Open the project in a text editor of your choice
+* Open the project in a text editor of your choice (eg: Atom)
 ```
 $ atom .
 ```
-7. Prepare the database
+* Prepare the database
 ```
 $ rake db:create
 $ rake db:migrate
-$ rake db:test:prepare
 ```
-8. In psql navigate to the oregon_sightings_development database and copy in the database file
+* In psql navigate to the oregon_sightings_development database and copy in the database file
 ```
 $ psql
 
@@ -79,11 +76,15 @@ $ psql
 
 COPY ufos(sight_date, city, state, shape, duration, summary, latitude, longitude) FROM '/Users/Guest/desktop/UFOregon/raw_data/oregon_sightings_latlong.csv' DELIMITER ',' CSV;
 ```
-9. ⌘Command T to open another new tab in the terminal and start sinatra (leave it running in background)
+* 8a. (optional) migrate data to the test database
+```
+$ rake db:test:prepare
+```
+* ⌘Command T to open another new tab in the terminal and start sinatra (leave it running in background)
 ```
 $ ruby app.rb
 ```
-10. Navigate to localhost:4567 in a web browser of your choice
+* Navigate to localhost:4567 in a web browser of your choice
 
 ## Known Bugs
 *

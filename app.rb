@@ -74,8 +74,7 @@ end
 post('/get_all_cities') do
   # set the context to "many" so the correct data is picked up from '/ruby_data' path
   City.save_current_city("many")
-  everything = Ufo.find_by_sql("SELECT * FROM ufos;")
-
+  everything = Ufo.find_by_sql("SELECT * FROM ufos LIMIT 100;")
   # find all unique city names in the database
   all_names_arr = []
   everything.each do |row_obj|

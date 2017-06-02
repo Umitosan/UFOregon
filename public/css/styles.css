@@ -68,10 +68,6 @@ body {
   margin-top: 10px;
 }
 
-.hide {
-   display: none;
-}
-
 .opacity {
     opacity: 0;
 }
@@ -92,14 +88,13 @@ body {
   position: fixed;
 }
 
-
 /* scrollable window */
 #dialog-window {
   padding-top: 2%;
   height: 500px;
 }
 
-#map_script, #scrollable-content {
+#scrollable-content {
   display: none;
   padding-left: 3%;
   padding-right: 3%;
@@ -110,7 +105,6 @@ body {
   height: 400px;
   overflow: auto;
 }
-
 
 
 /*font-family: 'Codystar', cursive;*/

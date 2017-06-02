@@ -85,11 +85,29 @@ var google_styles = [
   }
 ];
 
-//////////////////////////////////////////////////////
-//// initMap = master google maps API output
-//////////////////////////////////////////////////////
+// function to make the maker bounce twice on click
+function toggleBounce(myMarker) {
+  if (myMarker.getAnimation() !== null) {
+      myMarker.setAnimation(null);
+  } else {
+      myMarker.setAnimation(google.maps.Animation.BOUNCE);
+      setTimeout(function() {
+      myMarker.setAnimation(null)
+    }, 2800);
+  }
+}
 
+//Function to display UFO reports upon icon click and populate sightings
+function showReport(myCity) {
+  $('#scrollable-content').show();
+  $('#reports').empty();
+  var reports = myCity['rep'];
+  reports.forEach(function(report) {
+    $('#reports').append("<li>" + report + "</li>");
+  });
+}
 
+// MAIN CREATE MAP FUNCTION
 function initMapMain() {
   // create main map
   mapMain = new google.maps.Map(document.getElementById('map'), {
@@ -99,42 +117,40 @@ function initMapMain() {
   });
 }; // END initFirstMap function
 
-
-function addMarkers(queryData) {
+// ADD MARKERS TO EXISTING MAP
+function addMarkers(cities) {
   // places each marker for the city
-  queryData.forEach(function(city_hash) {
-    var coord = new google.maps.LatLng(city_hash['lat'],city_hash['lng']);
-    testMarker = new google.maps.Marker({
-      position: coord,
-      animation: google.maps.Animation.DROP,
-      icon: './img/ufo_marker_eerie.png',
-      map: mapMain
-    });
-    // sightings reports
-    testMarker.addListener('click', showReport);
-    // info window
-    testMarker.addListener('click', function() {
-      infowindow.open(mapMain, this);
-    });
-    var infowindow = new google.maps.InfoWindow({
-      content: "<h3 class='blk_text'>" + city_hash['nam'] + '</h3><br>' +
-                "<p class='blk_text'>Found: " + city_hash['tot'] + ' UFOs <br>' +
-                "<p class='blk_text'>Lat= " + city_hash['lat'] + "<br>" + " Long= " +
-                city_hash['lng'] + "<p>"
-    });
+  cities.forEach(function(city) {
+          var coord = new google.maps.LatLng(city['lat'],city['lng']);
+          var testMarker = new google.maps.Marker({
+            position: coord,
+            animation: google.maps.Animation.DROP,
+            icon: './img/ufo_marker_eerie.png',
+            map: mapMain
+          });
+          // sightings reports
+          testMarker.addListener('click', function() {
+            showReport(city);
+          });
+          testMarker.addListener('click', function() {
+            toggleBounce(this);
+          });
+          // info window
+          testMarker.addListener('click', function() {
+            // pan to clicked pin
+            infowindow.open(mapMain, this);
+          });
+          testMarker.addListener('click', function() {
+            mapMain.panTo(coord);
+          });
+          var infowindow = new google.maps.InfoWindow({
+            content: "<h3 class='blk_text'>" + city['nam'] + '</h3><br>' +
+                      "<p class='blk_text'>Found: " + city['tot'] + ' UFOs <br>' +
+                      "<p class='blk_text'>Lat= " + city['lat'] + "<br>" + " Long= " +
+                      city['lng'] + "<p>"
+          });
   });
-  // refocus on center of Oregon
-  // var oregon = new google.maps.LatLng(43.8041, -120.5542);
-  // mapMain.panTo(oregon);
-  // REF: https://developers.google.com/maps/documentation/javascript/examples/marker-remove
 }; // end addMarkers function
-
-//Function to display UFO reports upon icon click
-function showReport() {
-  $('#scrollable-content').show();
-}
-
-
 
 
 // function initMap(queryData) {

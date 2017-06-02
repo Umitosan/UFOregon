@@ -37,20 +37,19 @@
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=<%=Keys.js_base%>"></script>
 </div>
 
-<div id="map_script"></div>
-<% if ((City.get_current_city != nil) && (City.get_current_city != "many")) %>
+<!-- <% if ((City.get_current_city != nil) && (City.get_current_city != "many")) %> -->
   <div id="dialog-window">
-    <div id="scrollable-content">
-      <h1><span><%=City.get_current_city.get_total%></span> Sightings found for <span><%=City.get_current_city.get_name%>:</span></h1>
+    <div id="scrollable-content">``
+      <ol id="reports">
+      </ol>
+      <!-- <h1><span><%=City.get_current_city.get_total%></span> Sightings found for <span><%=City.get_current_city.get_name%>:</span></h1>
       <ol>
         <% if (City.get_current_city.get_rep.length != 0) %>
           <% City.get_current_city.get_rep.each do |report| %>
             <li><%= report %></li>
           <% end %>
         <% end %>
-      </ol>
+      </ol> -->
     </div>
   </div>
-<% end %>
-
-<a href='/end'>
+<!-- <% end %> -->

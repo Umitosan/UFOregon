@@ -17,7 +17,7 @@ get('/ruby_data') do
         lat: 44.06,
         lng: -121.32,
         rep: "no reports",
-        tot: 0
+        tot: 1
       }].to_json
   elsif (City.get_current_city == "many")
       cities_arr = []
@@ -105,31 +105,6 @@ post('/get_all_cities') do
   erb(:index)
 end
 
-
 get '/end' do
   erb :end
 end
-
-
-# AJAX NOTES
-
-# get('/play')do
-#   if request.xhr?
-#     %q{<h1 class="blue">Hello! <a href="/">back</a></h1>}
-#   else
-#     "<h1>Not an Ajax request!</h1>"
-#   end
-# end
-
-# JSON NOTES
-
-# File.open("./public/js/data.json","w") do |file|
-#   file.write(coords)
-# end
-
-#
-# JSON.generate({:this => "is cool"})
-
-# File.open("./temp.js","w") do |file|
-#   file.write(coords.to_json)
-# end

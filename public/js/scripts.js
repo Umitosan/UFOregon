@@ -102,6 +102,7 @@ function showReport(myCity) {
   $('#scrollable-content').show();
   $('#reports').empty();
   var reports = myCity['rep'];
+  $('#reports').empty();
   reports.forEach(function(report) {
     $('#reports').append("<li>" + report + "</li>");
   });
@@ -129,8 +130,9 @@ function addMarkers(cities) {
             map: mapMain
           });
           // sightings reports
+          var currentCity = city;
           testMarker.addListener('click', function() {
-            showReport(city);
+            showReport(currentCity);
           });
           testMarker.addListener('click', function() {
             toggleBounce(this);
@@ -212,22 +214,14 @@ function addMarkers(cities) {
 // FRONT END
 ///////////////////
 $(document).ready(function() {
-
+  console.log("page loaded")
   // AJAX get request - to refresh the map
   $.get("/ruby_data", function(ruby_data) {
     initMapMain();
-    console.log("initMapMain()");
+    // console.log("initMapMain()");
     parsed_data = JSON.parse(ruby_data);
     addMarkers(parsed_data);
   });
-
-  // old request for old initMap
-  // AJAX get request - to refresh the map
-  // $.get("/ruby_data", function(ruby_data) {
-  //   console.log("AJAX $.get happened");
-  //   parsed_data = JSON.parse(ruby_data);
-  //   initMap(parsed_data);
-  // });
 
   $("#toggle_map").click(function() {
     $("#map_super").toggleClass("hide");
@@ -235,3 +229,11 @@ $(document).ready(function() {
   });
 
 });
+
+// old request for old initMap
+// AJAX get request - to refresh the map
+// $.get("/ruby_data", function(ruby_data) {
+//   console.log("AJAX $.get happened");
+//   parsed_data = JSON.parse(ruby_data);
+//   initMap(parsed_data);
+// });

@@ -95,13 +95,12 @@ body {
 }
 
 #scrollable-content {
-  display: none;
   padding-left: 3%;
   padding-right: 3%;
   color: white;
   font-weight: bolder;
   font-size: 1.5em;
-  opacity: 0.4;
+  opacity: 0.5;
   height: 400px;
   overflow: auto;
 }

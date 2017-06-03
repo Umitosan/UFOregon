@@ -9,8 +9,8 @@ get("/") do
   erb(:index)
 end
 
+# this path is used soley to pass data gathered from the database using ruby to the Javascript side
 get('/ruby_data') do
-  # data to be passed to javascript
   if (City.get_current_city == nil)
       [{
         nam: "Bend",
@@ -74,7 +74,7 @@ end
 post('/get_all_cities') do
   # set the context to "many" so the correct data is picked up from '/ruby_data' path
   City.save_current_city("many")
-  everything = Ufo.find_by_sql("SELECT * FROM ufos LIMIT 100;")
+  everything = Ufo.find_by_sql("SELECT * FROM ufos ;")
   # find all unique city names in the database
   all_names_arr = []
   everything.each do |row_obj|

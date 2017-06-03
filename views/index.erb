@@ -31,25 +31,16 @@
 </div>
 
 <div id="map_super">
-  <!-- This div is where the google map will be be displayed -->
+  <% # This div is where the google map will be be displayed %>
   <div id="map"></div>
-  <!-- Replace the value of the key parameter with your own API key. -->
+  <% # Replace the value of the key parameter with your own API key. %>
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=<%=Keys.js_base%>"></script>
 </div>
 
-<!-- <% if ((City.get_current_city != nil) && (City.get_current_city != "many")) %> -->
-  <div id="dialog-window">
-    <div id="scrollable-content">``
-      <ol id="reports">
-      </ol>
-      <!-- <h1><span><%=City.get_current_city.get_total%></span> Sightings found for <span><%=City.get_current_city.get_name%>:</span></h1>
-      <ol>
-        <% if (City.get_current_city.get_rep.length != 0) %>
-          <% City.get_current_city.get_rep.each do |report| %>
-            <li><%= report %></li>
-          <% end %>
-        <% end %>
-      </ol> -->
-    </div>
+
+<div id="dialog-window">
+  <div id="scrollable-content">
+    <ol id="reports">
+    </ol>
   </div>
-<!-- <% end %> -->
+</div>

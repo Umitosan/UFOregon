@@ -35,11 +35,12 @@ As a user, I want to see an indicator that shows which city's sighting informati
 | enter a city name to see a marker for that city | "Portland" | marker drops on Portland |
 | click UFO marker for a city to see more details | click UFO on Portland | A list of all of the descriptions of each unique sighting in that city shows below the map, and a display window on the marker shoes the city name, coordinates, and number of sightings |
 
-## pre-required
+## Prerequisites
 
-* Ruby
-* Rails
-* Google maps for Javascript Api key
+* [Git](https://git-scm.com/)
+* [Ruby](https://www.ruby-lang.org/en/downloads/)
+* [Rails](https://github.com/rails/rails)
+* [Google maps for Javascript Api key](https://developers.google.com/maps/documentation/javascript/)
 
 ## Setup/Installation
 
@@ -87,7 +88,9 @@ $ ruby app.rb
 * Navigate to localhost:4567 in a web browser of your choice
 
 ## Known Bugs
-*
+* error page on multiple words entered
+* error page on mispelling of city
+* error page on city not found
 
 ## Authors
 

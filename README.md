@@ -1,10 +1,6 @@
 # UFOregon
-![](https://media.giphy.com/media/VbmYpyiGXt2AU/giphy.gif)
-
 
 This application uses data from the National UFO Reporting Center (NUFORC) database @ http://www.nuforc.org to show on a Google Map all of the locations where a UFO sighting has been reported in the state of Oregon. Upon clicking the marker information about the different sightings will be available.
-
-## Screenshot
 
 ![screenshot](public/img/screen_shot.png)
 
@@ -103,3 +99,5 @@ Jin Camou, Dominic Brown, Sara Schultz, Dana Weiss
 ```
 Copyright (c) 2017 **Jin Camou, Dominic Brown, Sara Schultz, Dana Weiss**
 ```
+
+![](https://media.giphy.com/media/VbmYpyiGXt2AU/giphy.gif)

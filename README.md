@@ -40,52 +40,60 @@ As a user, I want to see an indicator that shows which city's sighting informati
 
 ## Setup/Installation
 
-* ⌘Command T to open a new tab in the terminal and start postgres (leave it running in the background)
-```
+* open a terminal (or cmd/powershell on win) and start postgres, leaving it running in the background
+```bash
 $ postgres
 ```
 * Clone this repository in the terminal
-```
+```bash
 $ git clone https://github.com/saschultz/UFOregon.git
 ```
 * Make sure you have rake installed
-```
+```bash
 $ gem install rake
 ```
 * Navigate to the project directory
-```
+```bash
 $ cd Desktop/UFOregon
 ```
 * Open the project in a text editor of your choice (eg: Atom)
-```
+```bash
 $ atom .
 ```
 * Prepare the database
-```
+```bash
 $ rake db:create
 $ rake db:migrate
 ```
-* In psql navigate to the oregon_sightings_development database and copy in the database file
-```
+* In psql navigate to the oregon_sightings_development database
+```bash
 $ psql
-
+```
+```sql
 \c oregon_sightings_development
-
-COPY ufos(sight_date, city, state, shape, duration, summary, latitude, longitude) FROM '/Users/Guest/desktop/UFOregon/raw_data/oregon_sightings_latlong.csv' DELIMITER ',' CSV;
+```
+* copy the database file to local psql database
+1. _(MAC example)_
+```sql
+COPY ufos(sight_date, city, state, shape, duration, summary, latitude, longitude) FROM '/Users/[your_user_name]/desktop/UFOregon/raw_data/oregon_sightings_latlong.csv' DELIMITER ',' CSV;
+```
+2. _(PC example)_
+```sql
+COPY ufos(sight_date, city, state, shape, duration, summary, latitude, longitude) FROM 'C:/Users/[your_user_name]/Desktop/UFOregon/raw_data/oregon_sightings_latlong.csv' DELIMITER ',' CSV;
 ```
 * 8a. (optional) migrate data to the test database
 ```
 $ rake db:test:prepare
 ```
-* ⌘Command T to open another new tab in the terminal and start sinatra (leave it running in background)
-```
+* open another terminal window (or cmd/powershell window) and start the Sinatra server.  Leave the windows open to continue serving the webapp.
+```bash
 $ ruby app.rb
 ```
 * Navigate to localhost:4567 in a web browser of your choice
 
 ## Known Bugs
+* various validation errors
 * error page on multiple words entered
-* error page on mispelling of city
 * error page on city not found
 
 ## Authors
@@ -96,8 +104,6 @@ Jin Camou, Dominic Brown, Sara Schultz, Dana Weiss
 
 *open source GPL & MIT*
 
-```
-Copyright (c) 2017 **Jin Camou, Dominic Brown, Sara Schultz, Dana Weiss**
-```
+Copyright (c) 2017 _**Jin Camou, Dominic Brown, Sara Schultz, Dana Weiss**_
 
 ![](https://media.giphy.com/media/VbmYpyiGXt2AU/giphy.gif)

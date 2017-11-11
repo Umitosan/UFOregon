@@ -38,6 +38,10 @@ As a user, I want to see an indicator that shows which city's sighting informati
 * [Rails](https://github.com/rails/rails)
 * [Google maps for Javascript Api key](https://developers.google.com/maps/documentation/javascript/)
 
+## Live
+
+* View the live UFOregon site on [Heroku](https://uforegon.herokuapp.com/)
+
 ## Setup/Installation
 
 * open a terminal (or cmd/powershell on win) and start postgres, leaving it running in the background

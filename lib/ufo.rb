@@ -9,8 +9,12 @@ module Keys
   end
 end
 
+
+
 class City
-  # attr_accessor( currenty_city )
+  class << self  # class level attr_accessor syntax for the Class variables only
+    attr_accessor( :current_city, :all )
+  end
   @@all = []
   @@current_city = nil
 
@@ -20,20 +24,6 @@ class City
     @lng = 0
     @reports = []
     @total = 0
-  end
-
-  def City.save_to_all(arr)
-    @@all = arr
-  end
-  def City.get_all
-    @@all
-  end
-
-  def City.save_current_city(city_obj)
-    @@current_city = city_obj
-  end
-  def City.get_current_city
-    @@current_city
   end
 
   def save_name(name)

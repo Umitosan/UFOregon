@@ -15,17 +15,17 @@
     <form action="/get_city_name" method="post">
       <input class="blk_text" type="text" name="city_name" placeholder="search by city" required></input>
       <button class="btn btn-City btn-sm" type="submit">Search!</button>
-      <% if (City.get_current_city != nil) %>
+      <% if (City.current_city != nil) %>
         <h4 id="instructions">Click UFO for sighting reports</h4>
       <% end %>
     </form>
   </div>
   <div class="col-xs-4 query">
-    <% if ((City.get_current_city != nil) && (City.get_current_city != "many"))%>
+    <% if ((City.current_city != nil) && (City.current_city != "many"))%>
         <h3>Your Query results:</h3>
-        <p>Sightings found: <%= City.get_current_city.get_total %></p>
-        <p>City latitude: <%= City.get_current_city.get_lat %></p>
-        <p>City longitude: <%= City.get_current_city.get_lng %></p>
+        <p>Sightings found: <%= City.current_city.get_total %></p>
+        <p>City latitude: <%= City.current_city.get_lat %></p>
+        <p>City longitude: <%= City.current_city.get_lng %></p>
     <% end %>
   </div>
 </div>

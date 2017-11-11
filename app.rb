@@ -11,7 +11,7 @@ end
 
 # this path is used soley to pass data gathered from the database using ruby to the Javascript side
 get('/ruby_data') do
-  if (City.get_current_city == nil)
+  if (City.current_city == nil)
       [{
         nam: "Bend",
         lat: 44.06,
@@ -19,9 +19,9 @@ get('/ruby_data') do
         rep: "no reports",
         tot: 1
       }].to_json
-  elsif (City.get_current_city == "many")
+  elsif (City.current_city == "many")
       cities_arr = []
-      City.get_all.each do |city_obj|
+      City.all.each do |city_obj|
           city_data_hash = {
             nam: city_obj.get_name,
             lat: city_obj.get_lat,
@@ -34,11 +34,11 @@ get('/ruby_data') do
       cities_arr.to_json
   else
       [{
-        nam: City.get_current_city.get_name,
-        lat: City.get_current_city.get_lat,
-        lng: City.get_current_city.get_lng,
-        rep: City.get_current_city.get_rep,
-        tot: City.get_current_city.get_total
+        nam: City.current_city.get_name,
+        lat: City.current_city.get_lat,
+        lng: City.current_city.get_lng,
+        rep: City.current_city.get_rep,
+        tot: City.current_city.get_total
       }].to_json
   end
 end
@@ -64,10 +64,10 @@ post('/get_city_name') do
       summaries.push(row['summary'])
     end
     new_city.save_rep(summaries)
-    City.save_current_city(new_city)
+    City.current_city = new_city
     erb(:index)
   else
-    City.save_current_city(nil)
+    City.current_city = nil
     erb(:errors)
   end
 end
@@ -75,7 +75,7 @@ end
 
 post('/get_all_cities') do
   # set the context to "many" so the correct data is picked up from '/ruby_data' path
-  City.save_current_city("many")
+  City.current_city ="many"
   everything = Ufo.find_by_sql("SELECT * FROM ufos ;")
   # find all unique city names in the database
   all_names_arr = []
@@ -103,7 +103,7 @@ post('/get_all_cities') do
     new_city.save_total(summaries.length)
     cities_arr.push(new_city)
   end
-  City.save_to_all(cities_arr)
+  City.all = cities_arr
   erb(:index)
 end
 

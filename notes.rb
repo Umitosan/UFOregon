@@ -1,12 +1,10 @@
 ## -- ** DATABASE SETUP ** -- ##
 
-##in terminal --> START POSTGRES
-rake db:create
-rake db:migrate
-rake db:test:prepare
-
 ##----IN PSQL----> \c to oregon_sightings_development:
 COPY ufos(sight_date, city, state, shape, duration, summary, latitude, longitude) FROM '/Users/Guest/desktop/UFOregon/raw_data/oregon_sightings_latlong.csv' DELIMITER ',' CSV;
+## this copy is run with different permissions see
+## https://stackoverflow.com/questions/1517635/save-pl-pgsql-output-from-postgresql-to-a-csv-file/1517692#1517692
+\copy ufos(sight_date, city, state, shape, duration, summary, latitude, longitude) FROM './raw_data/oregon_sightings_latlong.csv' DELIMITER ',' CSV;
 
 
 

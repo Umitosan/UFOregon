@@ -45,7 +45,9 @@ end
 
 
 post('/get_city_name') do
+
   city_name = params.fetch('city_name')
+  puts "city_name = " + city_name
   if City.validate_name?(City.caseIt(city_name))
     new_city = City.new()
     new_city.save_name(City.caseIt(city_name))
@@ -65,7 +67,7 @@ post('/get_city_name') do
     City.save_current_city(new_city)
     erb(:index)
   else
-    City.get_current_city = nil
+    City.save_current_city(nil)
     erb(:errors)
   end
 end

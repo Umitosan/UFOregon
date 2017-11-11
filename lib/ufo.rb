@@ -10,7 +10,7 @@ module Keys
 end
 
 class City
-  # attr_accessor()
+  # attr_accessor( currenty_city )
   @@all = []
   @@current_city = nil
 

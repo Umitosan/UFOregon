@@ -68,6 +68,7 @@ $ atom .
 ```bash
 $ rake db:create
 $ rake db:migrate
+$ rake db:test:prepare
 ```
 * In psql navigate to the oregon_sightings_development database
 ```bash

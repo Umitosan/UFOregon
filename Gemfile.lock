@@ -40,6 +40,9 @@ GEM
     pg (0.21.0-x86-mingw32)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
+    pry (0.11.2)
+      coderay (~> 1.1.0)
+      method_source (~> 0.9.0)
     public_suffix (3.0.0)
     rack (2.0.3)
     rack-protection (2.0.0)
@@ -89,6 +92,7 @@ DEPENDENCIES
   capybara
   json
   pg
+  pry
   rake
   rspec
   sinatra

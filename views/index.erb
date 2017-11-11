@@ -23,9 +23,9 @@
   <div class="col-xs-4 query">
     <% if ((City.current_city != nil) && (City.current_city != "many"))%>
         <h3>Your Query results:</h3>
-        <p>Sightings found: <%= City.current_city.get_total %></p>
-        <p>City latitude: <%= City.current_city.get_lat %></p>
-        <p>City longitude: <%= City.current_city.get_lng %></p>
+        <p>Sightings found: <%= City.current_city.total %></p>
+        <p>City latitude: <%= City.current_city.lat %></p>
+        <p>City longitude: <%= City.current_city.lng %></p>
     <% end %>
   </div>
 </div>

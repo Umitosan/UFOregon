@@ -9,9 +9,10 @@ gem "rake"
 gem "pg"
 gem "sinatra"
 gem "json"
+gem 'pry'
 
 group :test do
   gem "rspec"
   gem "capybara"
-  # gem "pry"
+  gem "pry"
 end

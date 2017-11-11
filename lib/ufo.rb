@@ -12,11 +12,15 @@ end
 
 
 class City
+  ############
   class << self  # class level attr_accessor syntax for the Class variables only
     attr_accessor( :current_city, :all )
   end
   @@all = []
   @@current_city = nil
+  ############
+
+  attr_accessor(:name,:lat,:lng,:reports,:total)  # City instance level accessor
 
   def initialize()
     @name = ""
@@ -24,40 +28,6 @@ class City
     @lng = 0
     @reports = []
     @total = 0
-  end
-
-  def save_name(name)
-    @name = name
-  end
-  def get_name
-    @name
-  end
-
-  def save_lat(num)
-    @lat = num
-  end
-  def get_lat
-    @lat
-  end
-  def save_lng(num)
-    @lng = num
-  end
-  def get_lng
-    @lng
-  end
-
-  def save_rep(arr)
-    @reports = arr
-  end
-  def get_rep
-    @reports
-  end
-
-  def save_total(num)
-    @total = num
-  end
-  def get_total
-    @total
   end
 
   def City.caseIt(name)

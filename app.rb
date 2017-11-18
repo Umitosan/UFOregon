@@ -45,12 +45,13 @@ end
 
 post('/get_city_name') do
 
-  city_name = params.fetch('city_name')
-  puts "city_name = " + city_name
+  city_name = City.caseIt(params.fetch('city_name'))
+  # binding.pry
   # string must validate && city lookup must find something
-  if ( City.validate_name?(City.caseIt(city_name)) && (Ufo.find_by(city: City.caseIt(city_name)) != nil) )
+  if ( City.validate_name?(city_name) && (Ufo.find_by(city: city_name) != nil) )
+    # binding.pry
     new_city = City.new()
-    new_city.name = City.caseIt(city_name)
+    new_city.name = city_name
     found_rows_arr = Ufo.find_by_sql("SELECT * FROM ufos WHERE city = '#{new_city.name}';")
     new_city.total = found_rows_arr.count
     # returns a single record for city to display correct map marker

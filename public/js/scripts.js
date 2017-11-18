@@ -218,7 +218,6 @@ $(document).ready(function() {
   // AJAX get request - to refresh the map
   $.get("/ruby_data", function(ruby_data) {
     initMapMain();
-    // console.log("initMapMain()");
     parsed_data = JSON.parse(ruby_data);
     addMarkers(parsed_data);
   });

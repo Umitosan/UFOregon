@@ -31,13 +31,13 @@ class City
   end
 
   def City.caseIt(name)
-    name = name.downcase.capitalize
-    name
+    name2 = name.split(" ").map { |word| word.downcase.capitalize }
+    name2.join(" ")
   end
 
   def City.validate_name?(name)
     valid = nil
-    if (name !~ /[^a-zA-Z]/i)
+    if (name !~ /[^a-zA-Z\s]/) # (^) denote start of line, any letter, include spaces (\s)
       valid = true
     else
       valid = false

@@ -9,6 +9,7 @@ gem "rake"
 gem "pg"
 gem "sinatra"
 gem "json"
+gem "pry"
 
 group :test do
   gem "rspec"

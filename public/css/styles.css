@@ -105,13 +105,17 @@ body {
   margin-left: 10px;
 }
 
-#instructions {
+#instructions, #city_err {
   index: 2;
   padding: 0px;
   font-size: 16px;
   margin-top: 20px;
   margin-bottom: 0px;
 }
+#city_err {
+  color: red;
+}
+
 
 #map {
   height: 600px;

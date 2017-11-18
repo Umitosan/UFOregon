@@ -18,6 +18,8 @@ get('/ruby_data') do
         rep: "no reports",
         tot: 1
       }].to_json
+  elsif (City.current_city == "notfound")
+    # don't return a marker = blank map
   elsif (City.current_city == "many")
       cities_arr = []
       City.all.each do |city_obj|
@@ -46,10 +48,8 @@ end
 post('/get_city_name') do
 
   city_name = City.caseIt(params.fetch('city_name'))
-  # binding.pry
   # string must validate && city lookup must find something
   if ( City.validate_name?(city_name) && (Ufo.find_by(city: city_name) != nil) )
-    # binding.pry
     new_city = City.new()
     new_city.name = city_name
     found_rows_arr = Ufo.find_by_sql("SELECT * FROM ufos WHERE city = '#{new_city.name}';")
@@ -68,8 +68,8 @@ post('/get_city_name') do
     City.current_city = new_city
     erb(:index)
   else
-    City.current_city = nil
-    erb(:errors)
+    City.current_city = "notfound"
+    erb(:index)
   end
 end
 

@@ -13,14 +13,17 @@
     <form action="/get_city_name" method="post">
       <input class="blk_text" type="text" name="city_name" placeholder="by city" required></input>
       <button class="btn btn-City btn-sm" type="submit">Go!</button>
-      <% if (City.current_city != nil) %>
+      <% if (City.current_city != nil) && (City.current_city != "notfound") %>
         <p id="instructions">Click UFO icon for sighting reports</p>
+      <% end %>
+      <% if (City.current_city == "notfound") %>
+        <p id="city_err">Sorry I couldn't find that city</p>
       <% end %>
     </form>
   </div>
   <div class="col-xs-4 query right-col">
     <div class="right-col-box">
-      <% if ((City.current_city != nil) && (City.current_city != "many"))%>
+      <% if ((City.current_city != nil) && (City.current_city != "many") && (City.current_city != "notfound") )%>
           <h3>Query summary:</h3>
           <p>Sightings found: <%= City.current_city.total %></p>
           <p>City latitude: <%= City.current_city.lat %></p>

@@ -2,7 +2,9 @@
 
 This application uses data from the National UFO Reporting Center (NUFORC) database @ http://www.nuforc.org to show on a Google Map all of the locations where a UFO sighting has been reported in the state of Oregon. Upon clicking the marker information about the different sightings will be available.
 
-![screenshot](public/img/screen_shot.png)
+* View the site [LIVE](https://uforegon.herokuapp.com/)
+
+![screenshot](public/img/screen_shot2.png)
 
 ## Primary technologies used
 
@@ -38,13 +40,10 @@ As a user, I want to see an indicator that shows which city's sighting informati
 * [Rails](https://github.com/rails/rails)
 * [Google maps for Javascript Api key](https://developers.google.com/maps/documentation/javascript/)
 
-## Live
-
-* View the live UFOregon site on [Heroku](https://uforegon.herokuapp.com/)
-
 ## Setup/Installation
 
-* open a terminal (or cmd/powershell on win) and start postgres, leaving it running in the background
+* make sure postgres is currently running by opening a terminal (or cmd/powershell on win) and starting the postgres process OR run postgres as a service
+* note that you may have to specify a user
 ```bash
 $ postgres
 ```
@@ -60,17 +59,16 @@ $ gem install rake
 ```bash
 $ cd Desktop/UFOregon
 ```
-* Open the project in a text editor of your choice (eg: Atom)
-```bash
-$ atom .
-```
 * Prepare the database
 ```bash
 $ rake db:create
 $ rake db:migrate
+```
+* (optional) migrate data to the test database
+```
 $ rake db:test:prepare
 ```
-* In psql navigate to the oregon_sightings_development database
+* Open psql and navigate to the oregon_sightings_development database
 ```bash
 $ psql
 ```
@@ -86,23 +84,16 @@ COPY ufos(sight_date, city, state, shape, duration, summary, latitude, longitude
 ```sql
 COPY ufos(sight_date, city, state, shape, duration, summary, latitude, longitude) FROM 'C:/Users/[your_user_name]/Desktop/UFOregon/raw_data/oregon_sightings_latlong.csv' DELIMITER ',' CSV;
 ```
-* 8a. (optional) migrate data to the test database
-```
-$ rake db:test:prepare
-```
 * open another terminal window (or cmd/powershell window) and start the Sinatra server.  Leave the windows open to continue serving the webapp.
 ```bash
 $ ruby app.rb
 ```
-* Navigate to localhost:4567 in a web browser of your choice
+* Navigate to [localhost:4567](http://localhost:4567) in a web browser of your choice
 
 ## Known Bugs
-* various validation errors
-* error page on multiple words entered
-* error page on city not found
+* no knows bugs at this time
 
 ## Authors
-
 Jin Camou, Dominic Brown, Sara Schultz, Dana Weiss
 
 ## License

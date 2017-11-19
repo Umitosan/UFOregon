@@ -154,62 +154,6 @@ function addMarkers(cities) {
   });
 }; // end addMarkers function
 
-
-// function initMap(queryData) {
-//   var startCoord = new google.maps.LatLng(queryData[0]["lat"],queryData[0]["lng"]);
-//   // creates a new google maps object and centers on a area
-//   map = new google.maps.Map(document.getElementById('map'), {
-//     zoom: 7,
-//     // lat lng literal example
-//     // center: {lat: 44.06, lng: -121.32},
-//     center: startCoord,
-//     styles: google_styles
-//   });
-//   // places each marker for the city
-//   queryData.forEach(function(hash_obj) {
-//     var coord = new google.maps.LatLng(hash_obj['lat'],hash_obj['lng']);
-//     marker = new google.maps.Marker({
-//       position: coord,
-//       animation: google.maps.Animation.DROP,
-//       icon: './img/ufo_marker_eerie.png',
-//       map: map
-//     });
-//     marker.addListener('click', toggleBounce);
-//     marker.addListener('click', showReport);
-//   });
-//
-//   // setting up the marker window HTML content
-//   var myContent = "";
-//   if (queryData[0]['tot'] !== 0) {
-//     myContent = "<h3 class='blk_text'>" + queryData[0]["nam"] + "</h3><br>" + "<p class='blk_text'>Found: " + queryData[0]["tot"] + " UFOs <br>" +
-//     "<p class='blk_text'>Lat= " + queryData[0]["lat"] + "<br>" + " Long= " + queryData[0]["lng"] + "<p>";
-//   }
-//
-//   function toggleBounce() {
-//     if (marker.getAnimation() !== null) {
-//       marker.setAnimation(null);
-//     } else {
-//         marker.setAnimation(google.maps.Animation.BOUNCE);
-//       setTimeout(function() {
-//           marker.setAnimation(null)
-//       }, 2800);
-//     }
-//   }
-//
-//   //Function to display UFO reports upon icon click
-//   function showReport() {
-//     $('#scrollable-content').show();
-//   }
-//
-//   var infowindow = new google.maps.InfoWindow({
-//     content: myContent
-//   });
-//
-//   google.maps.event.addListener(marker, 'click', function() {
-//     infowindow.open(map, marker, queryData);
-//   });
-// }  // end initMap() function
-
 ///////////////////
 // FRONT END
 ///////////////////

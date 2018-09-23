@@ -49,7 +49,7 @@ $ postgres
 ```
 * Clone this repository in the terminal
 ```bash
-$ git clone https://github.com/saschultz/UFOregon.git
+$ git clone https://github.com/umitosan/UFOregon.git
 ```
 * Make sure you have rake installed
 ```bash
@@ -78,11 +78,11 @@ $ psql
 * copy the database file to local psql database
 1. _(MAC example)_
 ```sql
-COPY ufos(sight_date, city, state, shape, duration, summary, latitude, longitude) FROM '/Users/[your_user_name]/desktop/UFOregon/raw_data/oregon_sightings_latlong.csv' DELIMITER ',' CSV;
+\copy ufos(sight_date, city, state, shape, duration, summary, latitude, longitude) FROM '/Users/[your_user_name]/desktop/UFOregon/raw_data/oregon_sightings_latlong.csv' DELIMITER ',' CSV;
 ```
 2. _(PC example)_
 ```sql
-COPY ufos(sight_date, city, state, shape, duration, summary, latitude, longitude) FROM 'C:/Users/[your_user_name]/Desktop/UFOregon/raw_data/oregon_sightings_latlong.csv' DELIMITER ',' CSV;
+\copy ufos(sight_date, city, state, shape, duration, summary, latitude, longitude) FROM 'C:/Users/[your_user_name]/Desktop/UFOregon/raw_data/oregon_sightings_latlong.csv' DELIMITER ',' CSV;
 ```
 * open another terminal window (or cmd/powershell window) and start the Sinatra server.  Leave the windows open to continue serving the webapp.
 ```bash

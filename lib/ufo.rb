@@ -5,7 +5,7 @@ end
 
 module Keys
   def Keys.js_base
-    'AIzaSyAw9YqBwAtZgoHPz8qfM-1BIlXB9bgyfSU'
+    'AIzaSyCpF8nxj0hnTYxDadNYGHw6AHP99BSTkzM'
   end
 end
 

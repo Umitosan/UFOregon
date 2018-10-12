@@ -47,6 +47,37 @@ body {
   .jumbotron h1 { font-size: 40px; }
 }
 
+@media (max-width: 992px) and (min-width: 1px) {
+  .jumbotron { margin-bottom: 14px; }
+  .right-col {
+    font-size: 12px;
+  }
+  .mid-col {
+    padding: 10px 0px;
+  }
+  mid-col h3.sub-header {
+    margin-bottom: 10px;
+  }
+  .mid-col div.instructions {
+    width: 250px;
+    display: flex;
+    text-align: center;
+    padding: 0px 0px 0px 6px;
+    font-size: 12px;
+    /* outline-color: blue;
+    outline-width: 1px;
+    outline-style: solid; */
+  }
+  .mid-col span.instruct-txt {
+    padding-top: 8px;
+  }
+  .sub-header {
+    margin-top: 4px;
+    margin-bottom: 4px;
+    font-size: 18px;
+  }
+}
+
 .jumbotron {
   background: rgba(0,0,0,0.2);
   color: white;
@@ -57,8 +88,29 @@ body {
   color: #B0766D;
 }
 
+.instructions {
+  width: 270px;
+  display: flex;
+  margin: 10px auto 0px auto;
+  /* outline-color: green;
+  outline-width: 1px;
+  outline-style: solid; */
+}
 
-#sub-header {
+.instruct-txt {
+  padding-top: 4px;
+}
+
+.instruct-icon {
+  height: 30px;
+  width: 30px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url("../img/ufo_marker_eerie.png");
+}
+
+
+.sub-header {
   text-align: center;
   margin-top: 0px;
 }
@@ -67,11 +119,20 @@ body {
   height: 132px;
 }
 
+
+.left-col {
+  padding-top: 60px;
+}
 .btn {
   background-color: #B7877F;
   font-size: 13px;
   letter-spacing: 2px;
   border-color: #B7877F;
+}
+.btn-pink:hover {
+  background-color: #e2cfcb;
+  border-color: #e2cfcb;
+  font-weight: 600;
 }
 
 .btn-info:hover {
@@ -100,19 +161,16 @@ body {
   margin-top: 12px;
   margin-bottom: 10px;
 }
-
 #toggle_map, #show_all {
   margin-left: 10px;
 }
 
-#instructions, #city_err {
+#city_err {
   index: 2;
   padding: 0px;
   font-size: 16px;
   margin-top: 20px;
   margin-bottom: 0px;
-}
-#city_err {
   color: red;
 }
 

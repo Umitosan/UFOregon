@@ -3,18 +3,22 @@
 
 <div class="row controls_row">
   <div class="col-xs-4 left-col">
-    <button id="toggle_map" class="btn btn-City" name="toggle_map">Toggle map</button>
+    <button id="toggle_map" class="btn btn-pink" name="toggle_map">Toggle map</button>
     <% # <form action="/get_all_cities" method="post"> %>
     <% #  <button id="show_all" class="btn" type="submit">gimme many!</button> %>
     <% # </form> %>
   </div>
   <div class="col-xs-4 mid-col">
-    <h3 id="sub-header">Search the database...</h3>
+    <h3 class="sub-header">Search the database...</h3>
     <form action="/get_city_name" method="post">
       <input class="blk_text" type="text" name="city_name" placeholder="by city" required></input>
-      <button class="btn btn-City btn-sm" type="submit">Go!</button>
+      <button class="btn btn-pink btn-sm" type="submit">Go!</button>
       <% if (City.current_city != nil) && (City.current_city != "notfound") %>
-        <p id="instructions">Click UFO icon for sighting reports</p>
+        <div class="instructions">
+          <span class="instruct-txt" >Click UFO icon</span>
+          <div class="instruct-icon"></div>
+          <span class="instruct-txt" >for sighting reports</span>
+        </div>
       <% end %>
       <% if (City.current_city == "notfound") %>
         <p id="city_err">Sorry I couldn't find that city</p>
